@@ -7,7 +7,13 @@ const getUser = (req, res, _next) => {
     return res.status(400).send("Necessário fornecer o nome do usuário");
   };
 
-  const user = data.find((user) => user.name === name);
+  const user = data.find((user) => {
+    if (user.name === name) {
+      user.count += 1
+      return true;
+    }
+    return false;
+  });
   if (user) return res.send(user);
 
   return res.status(404).send("Usuário não encontrado");

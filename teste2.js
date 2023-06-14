@@ -14,6 +14,7 @@ module.exports = function(req, res){
 		id: data.length + 1,
 		name,
 		job,
+		count: 0
 	}
 
 	data.push(newUser);
