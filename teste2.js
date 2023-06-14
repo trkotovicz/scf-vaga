@@ -16,7 +16,7 @@ module.exports = function(req, res){
 		job,
 	}
 
-	data.push(newUser)
+	data.push(newUser);
 
 	return res.status(201).send(newUser);
 };

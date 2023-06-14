@@ -1,13 +1,21 @@
-var data =  require("./fakeData");
+const data =  require("./fakeData");
 
 module.exports =  function(req, res) {
-  
-    var id =  req.query.id;
+	const { id } =  req.query;
+	const { name, job } = req.body;
 
-    const reg = data.find(d => id == id);
-    reg.name = req.body.name;
-    reg.job = req.body.job;
+	if (!id) return res.status(401).send("Necessário informar ID");
+	if (!name || !job) {
+		return res.status(400).send("Necessário informar nome e profissão");
+	}
 
-    res.send(reg);
+	const index = data.findIndex(user => user.id === parseInt(id));
+  if (index === -1) {
+    return res.status(404).send("Usuário não encontrado");
+  }
 
+  data[index].name = name;
+  data[index].job = job;
+
+  return res.status(200).send(data);
 };
