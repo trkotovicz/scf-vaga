@@ -1,15 +1,18 @@
-var data =  require("./fakeData");
+let data =  require("./fakeData");
 
 module.exports = function(req, res) {
-  
-    var name =  req.query.name;
+	const { name } =  req.query;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            data[i] = null;
-        }
-    }
+  if (!name) {
+    return res.status(400).send("Necessário fornecer o nome do usuário");
+  }   
 
-    res.send("success");
+	let newUsers = [];
+  data.map((user) => {
+		if (user.name !== name) {
+			newUsers.push(user)
+		}
+	});
 
+	return res.status(200).send(newUsers);
 };
