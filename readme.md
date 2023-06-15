@@ -10,6 +10,11 @@ Uma decisão tomada foi alterar a estrutura do projeto, adotando a arquitetura M
 
 A intenção principal foi mostrar que é possível criar um código funcional de maneira simples, utilizando apenas JavaScript, sem a necessidade de recorrer a bibliotecas externas. Além disso, foi priorizada a legibilidade do código, de forma a facilitar a compreensão por qualquer pessoa que o analise.
 
+## Possíveis Melhorias
+
+- Adicionar Testes unitários e de Integração
+- Adicionar Typescript
+
 ---
 
 ### Testes Propostos
