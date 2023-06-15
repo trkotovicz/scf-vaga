@@ -3,7 +3,7 @@ const data = require("../model/fakeData");
 const getUser = (name) => {
   const user = data.find(user => user.name === name);
   if (!user) return false;
-  user.count += 1;
+  user.views += 1;
 
   return user;
 };
@@ -16,15 +16,17 @@ const getUserAccess = (name) => {
   return user;
 };
 
-const createUser = (name, job) => {
+const createUser = (name, job, permissions) => {
   const user = data.find(user => user.name === name);
   if (user) return false;
+  if (permissions !== 'admin') permissions = false;
 
   const newUser = {
     id: data.length + 1,
     name,
     job,
-    count: 0
+    views: 0,
+    permissions
   };
 
   data.push(newUser);

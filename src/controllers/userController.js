@@ -1,6 +1,5 @@
 const userService = require("../services/userService");
 
-
 module.exports = {
   getUser: (req, res) => {
     const { name } = req.query;
@@ -26,16 +25,16 @@ module.exports = {
     const user = userService.getUserAccess(name);
     if (!user) return res.status(404).send("Usuário não encontrado");
 
-    return res.send(`Usuário ${name} foi lido ${user.count} vezes.`);
+    return res.send(`Usuário ${name} foi lido ${user.views} vezes.`);
   },
 
   createUser: (req, res) => {
-    const { name, job } = req.body;
+    const { name, job, permissions } = req.body;
     if (!name || !job) {
       return res.status(400).send("Necessário fornecer nome e profissão do usuário");
     }
 
-    const user = userService.createUser(name, job);
+    const user = userService.createUser(name, job, permissions);
     if (!user) {
       return res.status(409).send("Usuário já cadastrado");
     }
